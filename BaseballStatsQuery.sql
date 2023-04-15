@@ -31,11 +31,7 @@ Create Table Players(
 	Player_Id INT PRIMARY KEY,
 	Player_Name VARCHAR(50),
 	Player_Num INT,
-<<<<<<< Updated upstream
 	Player_Pos VARCHAR(50),
-=======
-	Player_POS varchar(50),
->>>>>>> Stashed changes
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id)
 )
 
@@ -175,9 +171,6 @@ Create Table Pitch_IP(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
 	Player_IP DECIMAL (6,3)
-<<<<<<< Updated upstream
-)
-=======
 )
 
 Insert into Pitch_IP (player_id,team_id,Player_IP) values
@@ -186,5 +179,4 @@ Insert into Pitch_IP (player_id,team_id,Player_IP) values
 )
 
 
->>>>>>> Stashed changes
 
