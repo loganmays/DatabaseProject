@@ -31,14 +31,24 @@ Create Table Players(
 	Player_Id INT PRIMARY KEY,
 	Player_Name VARCHAR(50),
 	Player_Num INT,
+<<<<<<< Updated upstream
 	Player_Pos VARCHAR(50),
+=======
+	Player_POS varchar(50),
+>>>>>>> Stashed changes
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id)
 )
+
 
 Create Table Singles(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
 	Num_Of_Singles INT
+)
+
+insert into Singles (player_id,team_id,Num_Of_Singles) Values
+(
+
 )
 
 Create Table Doubles(
@@ -47,10 +57,20 @@ Create Table Doubles(
 	Num_Of_Doubles INT
 )
 
+Insert into Doubles (player_id,team_id,Num_Of_Doubles) values
+(
+
+)
+
 Create Table Triples(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
 	Num_Of_Triples INT
+)
+
+Insert into Triples (player_id,team_id,Num_Of_Triples) values
+(
+
 )
 
 Create Table Homeruns(
@@ -59,10 +79,20 @@ Create Table Homeruns(
 	Num_Of_Homeruns INT
 )
 
+Insert into Homeruns (player_id,team_id,Num_Of_Homeruns) values
+(
+
+)
+
 Create Table Hitter_Strikeouts(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
 	Player_Hitter_Strikeout INT
+)
+
+Insert into Hitter_Strikeouts (player_id,team_id,Player_Hitter_Strikeout) values
+(
+
 )
 
 Create Table Pitch_Strikeouts(
@@ -71,10 +101,20 @@ Create Table Pitch_Strikeouts(
 	Player_Pitch_Strikeout INT
 )
 
+Insert into Pitch_Strikeouts(player_id,team_id,Player_Pitch_Strikeout) values
+(
+
+)
+
 Create Table Average(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
 	Player_Avg DECIMAL (4,3)
+)
+
+Insert into Average (player_id,team_id,Player_Avg) values
+(
+
 )
 
 Create Table Hitter_Walks(
@@ -83,10 +123,19 @@ Create Table Hitter_Walks(
 	Player_Hit_Walks INT
 )
 
+Insert into Hitter_Walks (player_id,team_id,Player_Hit_Walks) values
+(
+
+)
+
 Create Table Pitch_Walks(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
 	Player_Pitch_Walks INT
+)
+Insert into Pitch_Walks (player_id,team_id,Player_Pitch_Walks) values
+(
+
 )
 
 Create Table OnBasePercentage(
@@ -95,10 +144,20 @@ Create Table OnBasePercentage(
 	Player_OBP DECIMAL (4,3)
 )
 
+Insert into OnBasePercentage(player_id,team_id,Player_OBP) values
+(
+
+)
+
 Create Table Slugging(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
 	Player_Slugging DECIMAL (4,3)
+)
+
+Insert into Slugging (player_id,team_id,Player_Slugging) values
+(
+
 )
 
 Create Table Pitch_ERA(
@@ -107,9 +166,25 @@ Create Table Pitch_ERA(
 	Player_ERA DECIMAL (5,3)
 )
 
+Insert into Pitch_ERA (player_id,team_id,Player_ERA) values
+(
+
+)
+
 Create Table Pitch_IP(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
 	Player_IP DECIMAL (6,3)
+<<<<<<< Updated upstream
 )
+=======
+)
+
+Insert into Pitch_IP (player_id,team_id,Player_IP) values
+(
+
+)
+
+
+>>>>>>> Stashed changes
 
