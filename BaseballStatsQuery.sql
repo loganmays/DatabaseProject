@@ -35,14 +35,21 @@ Create Table Players(
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id)
 )
 
-
-Create Table RBI(
+Create Table Hitter_Stats(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Num_Of_RBI INT
+	Num_Of_RBI INT,
+	Num_Of_Doubles INT,
+	Num_Of_Triples INT,
+	Num_Of_Homeruns INT,
+	Player_Hitter_Strikeout INT,
+	Player_Avg DECIMAL (4,3),
+	Player_Hit_Walks INT,
+	Player_OBP DECIMAL (4,3),
+	Player_Slugging DECIMAL (4,3);
 )
 
-insert into RBI (player_id,team_id,Num_Of_RBI) Values
+insert into Hitter_Stats (Player_Id,Team_Id,Num_Of_RBI,Num_Of_Doubles,Num_Of_Triples,Num_Of_Homeruns,Player_Hitter_Strikeout,Player_Avg,Player_Hit_Walks,Player_OBP,Player_Slugging) Values
 	(2, 1, 6),
 	(3, 1, 9),
 	(4, 1, 9),
@@ -179,141 +186,30 @@ insert into RBI (player_id,team_id,Num_Of_RBI) Values
 	(149, 15, 4),
 	(150, 15, 1);
 
-insert into Singles (player_id,team_id,Num_Of_Singles) Values
-(
-
-)
 
 
-Create Table Doubles(
+Create Table Pitcher_Stats(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Num_Of_Doubles INT
-)
-
-
-Insert into Doubles (player_id,team_id,Num_Of_Doubles) values
-(
-
-)
-
-Create Table Triples(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Num_Of_Triples INT
-)
-
-Insert into Triples (player_id,team_id,Num_Of_Triples) values
-(
-
-)
-
-Create Table Homeruns(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Num_Of_Homeruns INT
-)
-
-Insert into Homeruns (player_id,team_id,Num_Of_Homeruns) values
-(
-
-)
-
-Create Table Hitter_Strikeouts(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Player_Hitter_Strikeout INT
-)
-
-Insert into Hitter_Strikeouts (player_id,team_id,Player_Hitter_Strikeout) values
-(
-
-)
-
-Create Table Pitch_Strikeouts(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Player_Pitch_Strikeout INT
-)
-
-Insert into Pitch_Strikeouts(player_id,team_id,Player_Pitch_Strikeout) values
-(
-
-)
-
-Create Table Average(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Player_Avg DECIMAL (4,3)
-)
-
-Insert into Average (player_id,team_id,Player_Avg) values
-(
-
-)
-
-Create Table Hitter_Walks(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Player_Hit_Walks INT
-)
-
-Insert into Hitter_Walks (player_id,team_id,Player_Hit_Walks) values
-(
-
-)
-
-Create Table Pitch_Walks(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Player_Pitch_Walks INT
-)
-Insert into Pitch_Walks (player_id,team_id,Player_Pitch_Walks) values
-(
-
-)
-
-Create Table OnBasePercentage(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Player_OBP DECIMAL (4,3)
-)
-
-Insert into OnBasePercentage(player_id,team_id,Player_OBP) values
-(
-
-)
-
-Create Table Slugging(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Player_Slugging DECIMAL (4,3)
-)
-
-Insert into Slugging (player_id,team_id,Player_Slugging) values
-(
-
-)
-
-Create Table Pitch_ERA(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
-	Player_ERA DECIMAL (5,3)
-)
-
-Insert into Pitch_ERA (player_id,team_id,Player_ERA) values
-(
-
-)
-
-Create Table Pitch_IP(
-	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
-	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
+	Player_Pitch_Strikeout INT,
+	Player_Pitch_Walks INT,
+	Player_ERA DECIMAL (5,3),
 	Player_IP DECIMAL (6,3)
 )
 
-Insert into Pitch_IP (player_id,team_id,Player_IP) values
-(
-
-(
-
+insert into Pitcher_Stats (Player_Id,Team_Id,Player_Pitch_Strikeout,Player_Pitch_Walks,Player_ERA,Player_IP) Values
+	(1, 1, 6),
+	(11, 1, 9),
+	(21, 1, 9),
+	(31, 1, 7),
+	(41, 1, 11),
+	(51, 1, 8),
+	(61, 1, 3),
+	(71, 1, 0),
+	(81, 1, 0),
+	(91, 2, 2),
+	(101, 2, 6),
+	(111, 2, 17),
+	(121, 2, 4),
+	(131, 2, 17),
+	(141, 2, 4),
