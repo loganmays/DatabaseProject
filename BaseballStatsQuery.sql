@@ -179,6 +179,11 @@ insert into RBI (player_id,team_id,Num_Of_RBI) Values
 	(149, 15, 4),
 	(150, 15, 1);
 
+insert into Singles (player_id,team_id,Num_Of_Singles) Values
+(
+
+)
+
 
 Create Table Doubles(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
@@ -186,7 +191,8 @@ Create Table Doubles(
 	Num_Of_Doubles INT
 )
 
-Insert into Doubles (player_id,team_id,Num_Of_Doubles) Values
+
+Insert into Doubles (player_id,team_id,Num_Of_Doubles) values
 (
 
 )
@@ -309,4 +315,5 @@ Create Table Pitch_IP(
 Insert into Pitch_IP (player_id,team_id,Player_IP) values
 (
 
-)
+(
+
