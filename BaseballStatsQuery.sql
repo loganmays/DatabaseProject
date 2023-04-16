@@ -43,8 +43,21 @@ Create Table Players(
 Create Table Singles(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
+<<<<<<< Updated upstream
 	Num_Of_Singles INT
 )
+=======
+	Num_Of_RBI INT,
+	Num_Of_Doubles INT,
+	Num_Of_Triples INT,
+	Num_Of_Homeruns INT,
+	Player_Hitter_Strikeout INT,
+	Player_Avg DECIMAL (4,3),
+	Player_Hit_Walks INT,
+	Player_OBP DECIMAL (4,3),
+	Player_Slugging DECIMAL (4,3)
+);
+>>>>>>> Stashed changes
 
 insert into Singles (player_id,team_id,Num_Of_Singles) Values
 (
@@ -188,3 +201,45 @@ Insert into Pitch_IP (player_id,team_id,Player_IP) values
 
 >>>>>>> Stashed changes
 
+<<<<<<< Updated upstream
+=======
+insert into Pitcher_Stats (Player_Id,Team_Id,Player_Pitch_Strikeout,Player_Pitch_Walks,Player_ERA,Player_IP) Values
+	(1, 1, 10,8,6.75,14.2),
+	(11, 2, 17,6,1.93,18.2),
+	(21, 3, 10,9,11.37,12.2),
+	(31, 4, 17,3,4.7,15.1),
+	(41, 5, 8,2,6.92,13.0),
+	(51, 6, 12,1,3.78,16.2),
+	(61, 7, 13,6,4.18,23.2),
+	(71, 8, 13,6,3.21,14.0),
+	(81, 9, 6,2,4.15,8.2),
+	(91, 10, 16,8,4.5,14.0),
+	(101, 11, 16,2,3.94,16.0),
+	(111, 12, 6,2,13.5,4.0),
+	(121, 13, 18,5,4.11,15.1),
+	(131, 14, 14,10,6.32,15.2),
+	(141, 15, 19,5,3.86,14.0);
+
+
+create table USER_Table
+(
+	username varchar(50),
+	real_name varchar(50),
+	favorite_team varchar(50),
+);
+
+create table notify
+(
+	user_message varchar(100)
+);
+
+insert into USER_Table(username,real_name,favorite_team) values
+('bso','Braden Sonoda', 'Rangers'),
+('3cpo','Colton Purvines','Orioles'),
+('BigBuffetBoy85','Harrison Gallina','Mariners'),
+('shay916','Shay Chowdhury','Guardians'),
+('AshWinsCash','Ashleigh George','Yankees'),
+('ILoveOreos89','Logan Mays','Angels');
+
+
+>>>>>>> Stashed changes
