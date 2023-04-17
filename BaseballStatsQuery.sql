@@ -210,20 +210,3 @@ Create Table Pitcher_Stats(
 	Player_ERA DECIMAL (5,3),
 	Player_IP DECIMAL (6,3)
 )
-
-insert into Pitcher_Stats (Player_Id,Team_Id,Player_Pitch_Strikeout,Player_Pitch_Walks,Player_ERA,Player_IP) Values
-	(1, 1, 6, x, x, x),
-	(11, 2, 9, x, x, x),
-	(21, 3, 9, x, x, x),
-	(31, 4, 7, x, x, x),
-	(41, 5, 11, x, x, x),
-	(51, 6, 8, x, x, x),
-	(61, 7, 3, x, x, x),
-	(71, 8, 0, x, x, x),
-	(81, 9, 0, x, x, x),
-	(91, 10, 2, x, x, x),
-	(101, 11, 6, x, x, x),
-	(111, 12, 17, x, x, x),
-	(121, 13, 4, x, x, x),
-	(131, 14, 17, x, x, x),
-	(141, 15, 4, x, x, x);
