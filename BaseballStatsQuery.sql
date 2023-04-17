@@ -185,8 +185,7 @@ insert into Hitter_Stats (Player_Id,Team_Id,Num_Of_RBI,Num_Of_Doubles,Num_Of_Tri
 	(148, 15, 5),
 	(149, 15, 4),
 	(150, 15, 1);
-	Player_Slugging DECIMAL (4,3);
-)
+
 
 insert into Hitter_Stats (Player_Id,Team_Id,Num_Of_RBI,Num_Of_Doubles,Num_Of_Triples,Num_Of_Homeruns,Player_Hitter_Strikeout,Player_Avg,Player_Hit_Walks,Player_OBP,Player_Slugging) Values
 	(2, 1, 6, 1, 0, 2, 13, .254, 7, .343, .373),
