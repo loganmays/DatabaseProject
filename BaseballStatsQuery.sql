@@ -437,3 +437,6 @@ SELECT AVG(Pitcher_Stats.Player_ERA) AS 'Average ERA'
 FROM Players
 INNER JOIN Pitcher_Stats ON Pitcher_Stats.Player_Id = Players.Player_Id
 
+
+
+SELECT DATABASEPROPERTYEX('BaseballStats', 'Collation') SQLCollation;
