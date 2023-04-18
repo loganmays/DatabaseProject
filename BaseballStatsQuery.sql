@@ -1,4 +1,4 @@
-
+Create database BaseballStats
 Use BaseballStats
 
 Create Table Teams(
@@ -390,6 +390,7 @@ insert into USER_Table(username,real_name,favorite_team) values
 ('AshWinsCash','Ashleigh George','Yankees'),
 ('ILoveOreos89','Logan Mays','Angels');
 
+
 /*Show all hitters and their stats*/
 SELECT *
 FROM Players
@@ -423,3 +424,4 @@ WHERE Player_IP > 16 AND Player_Pitch_Strikeout > 10
 /*Show users and their favorite teams*/
 SELECT *
 FROM USER_Table
+
