@@ -1,4 +1,4 @@
-Create database BaseballStats
+
 Use BaseballStats
 
 Create Table Teams(
@@ -390,7 +390,6 @@ insert into USER_Table(username,real_name,favorite_team) values
 ('AshWinsCash','Ashleigh George','Yankees'),
 ('ILoveOreos89','Logan Mays','Angels');
 
-
 /*Show all hitters and their stats*/
 SELECT *
 FROM Players
@@ -425,3 +424,13 @@ WHERE Player_IP > 16 AND Player_Pitch_Strikeout > 10
 SELECT *
 FROM USER_Table
 
+/*Show number of homeruns on Yankees team*/
+SELECT SUM(Hitter_Stats.Num_Of_Homeruns) AS 'Yankees Homeruns'
+FROM Players
+INNER JOIN Hitter_Stats ON Hitter_Stats.Player_Id = Players.Player_Id
+WHERE Players.Team_Id = 15;
+
+/*Show average ERA of all pitchers*/
+SELECT AVG(Pitcher_Stats.Player_ERA) AS 'Average ERA'
+FROM Players
+INNER JOIN Pitcher_Stats ON Pitcher_Stats.Player_Id = Players.Player_Id
