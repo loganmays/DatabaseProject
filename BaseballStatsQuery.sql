@@ -390,3 +390,38 @@ insert into USER_Table(username,real_name,favorite_team) values
 ('AshWinsCash','Ashleigh George','Yankees'),
 ('ILoveOreos89','Logan Mays','Angels');
 
+
+/*Show all hitters and their stats*/
+SELECT *
+FROM Players
+INNER JOIN Hitter_Stats
+ON Hitter_Stats.Player_Id = Players.Player_Id
+
+/*Show all pitchers and their stats*/
+SELECT *
+FROM Players
+INNER JOIN Pitcher_Stats
+ON Pitcher_Stats.Player_Id = Players.Player_Id
+
+/*Show all teams and associated records*/
+SELECT *
+FROM Teams
+
+/*Show top 5 hitters in RBI category*/
+SELECT TOP 5*
+FROM Players
+INNER JOIN Hitter_Stats
+ON Hitter_Stats.Player_Id = Players.Player_Id
+ORDER BY Num_Of_RBI DESC
+
+/*Show pitchers who have over 16 innings pitched and over 10 strikeouts*/
+SELECT Player_Name,Player_IP,Player_Pitch_Strikeout
+FROM Players
+INNER JOIN Pitcher_Stats
+ON Pitcher_Stats.Player_Id = Players.Player_Id
+WHERE Player_IP > 16 AND Player_Pitch_Strikeout > 10
+
+/*Show users and their favorite teams*/
+SELECT *
+FROM USER_Table
+
