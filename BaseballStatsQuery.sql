@@ -457,6 +457,7 @@ FROM Players
 INNER JOIN Hitter_Stats
 ON Hitter_Stats.Player_Id = Players.Player_Id
 ORDER BY Num_Of_Homeruns DESC
+GO
 
 SELECT *
 FROM Homerun_Leaders
