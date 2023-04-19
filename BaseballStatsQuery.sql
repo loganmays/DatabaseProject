@@ -434,3 +434,21 @@ WHERE Players.Team_Id = 15;
 SELECT AVG(Pitcher_Stats.Player_ERA) AS 'Average ERA'
 FROM Players
 INNER JOIN Pitcher_Stats ON Pitcher_Stats.Player_Id = Players.Player_Id
+
+/*Trigger that notifies you when a team wins*/
+GO
+CREATE TRIGGER notifywin
+ON Teams
+AFTER UPDATE
+AS
+   IF (SELECT Win FROM inserted) = (SELECT Win FROM deleted) + 1
+   BEGIN
+      DECLARE @Team_Name VARCHAR(50)
+      SELECT @Team_Name = Team_name FROM Teams WHERE Team_Id = (SELECT Team_Id FROM inserted)
+      PRINT @Team_Name + ' won a game'
+   END
+GO
+
+UPDATE Teams
+SET Win = 8
+WHERE Team_Id = 1;
