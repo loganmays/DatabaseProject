@@ -1,6 +1,7 @@
 Create database BaseballStats
 Use BaseballStats
 
+/*Teams Table*/
 Create Table Teams(
 	Team_Id	INT PRIMARY KEY,
 	Team_Name VARCHAR(50),
@@ -10,6 +11,7 @@ Create Table Teams(
 	Loss INT
 )
 
+/*Insert values into teams table*/
 INSERT INTO Teams (Team_Id, Team_Name, Team_Abr, Team_City, Win, Loss) VALUES 
 	(1, 'Angels', 'LAA', 'Los Angeles', 7, 7),  
 	(2, 'Astros', 'HOU', 'Houston', 6, 8 ),
@@ -27,6 +29,7 @@ INSERT INTO Teams (Team_Id, Team_Name, Team_Abr, Team_City, Win, Loss) VALUES
 	(14, 'White Sox', 'CWS', 'Chicago', 6, 9 ),
 	(15, 'Yankees', 'NYY', 'New York', 9, 6 );
 
+/*Players Table*/
 Create Table Players(
 	Player_Id INT PRIMARY KEY,
 	Player_Name VARCHAR(50),
@@ -35,6 +38,8 @@ Create Table Players(
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id)
 
 )
+
+/*Insert values into Players table*/
 INSERT INTO Players( Player_id, Player_name, Player_Num,Player_Pos, Team_Id ) values 
 	(1, 'Tyler Anderson', 31, 'Pitcher', 1), 
 	(2, 'Taylor Ward', 3, 'Left Field', 1), 
@@ -187,7 +192,8 @@ INSERT INTO Players( Player_id, Player_name, Player_Num,Player_Pos, Team_Id ) va
 	(149, 'Kyle Higashioka', 66, 'Catcher', 15),
 	(150, 'Anthony Volpe', 11, 'Shortstop', 15)
 
-  
+ 
+/*Hitter_Stats Table*/
 Create Table Hitter_Stats(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
@@ -203,7 +209,7 @@ Create Table Hitter_Stats(
 );
 
 
-
+/*Insert values into Hitter_Stats table*/
 insert into Hitter_Stats (Player_Id,Team_Id,Num_Of_RBI,Num_Of_Doubles,Num_Of_Triples,Num_Of_Homeruns,Player_Hitter_Strikeout,Player_Avg,Player_Hit_Walks,Player_OBP,Player_Slugging) Values
 	(2, 1, 6, 1, 0, 2, 13, .254, 7, .343, .373),
 	(3, 1, 9, 5, 0, 3, 16, .278, 13, .435, .537),
@@ -342,7 +348,7 @@ insert into Hitter_Stats (Player_Id,Team_Id,Num_Of_RBI,Num_Of_Doubles,Num_Of_Tri
 	(150, 15, 1, 1, 1, 1, 16, .191, 8, .309, .319);
 
 
-
+/*Pitcher_Stats Table*/
 Create Table Pitcher_Stats(
 	Player_Id INT FOREIGN KEY REFERENCES Players(player_id),
 	Team_Id INT FOREIGN KEY REFERENCES Teams(team_id),
@@ -352,6 +358,7 @@ Create Table Pitcher_Stats(
 	Player_IP DECIMAL (6,3)
 )
 
+/*Insert values into teams Pitcer_Stats Table*/
 insert into Pitcher_Stats (Player_Id,Team_Id,Player_Pitch_Strikeout,Player_Pitch_Walks,Player_ERA,Player_IP) Values
 	(1, 1, 10,8,6.75,14.2),
 	(11, 2, 17,6,1.93,18.2),
@@ -370,6 +377,7 @@ insert into Pitcher_Stats (Player_Id,Team_Id,Player_Pitch_Strikeout,Player_Pitch
 	(141, 15, 19,5,3.86,14.0);
 
 
+/*User_Table*/
 create table USER_Table
 (
 	username varchar(50),
@@ -377,11 +385,7 @@ create table USER_Table
 	favorite_team varchar(50),
 );
 
-create table notify
-(
-	user_message varchar(100)
-);
-
+/*Insert values into teams User_Table*/
 insert into USER_Table(username,real_name,favorite_team) values
 ('bso','Braden Sonoda', 'Rangers'),
 ('3cpo','Colton Purvines','Orioles'),
@@ -427,16 +431,61 @@ FROM USER_Table
 
 
 /*Show number of homeruns on Yankees team*/
-SELECT SUM(Hitter_Stats.Num_Of_Homeruns) AS 'Yankees Homeruns'
+SELECT SUM(Hitter_Stats.Num_Of_Homeruns) 
+AS 'Yankees Homeruns'
 FROM Players
-INNER JOIN Hitter_Stats ON Hitter_Stats.Player_Id = Players.Player_Id
+INNER JOIN Hitter_Stats 
+ON Hitter_Stats.Player_Id = Players.Player_Id
 WHERE Players.Team_Id = 15;
 
 /*Show average ERA of all pitchers*/
-SELECT AVG(Pitcher_Stats.Player_ERA) AS 'Average ERA'
+SELECT AVG(Pitcher_Stats.Player_ERA) 
+AS 'Average ERA'
 FROM Players
-INNER JOIN Pitcher_Stats ON Pitcher_Stats.Player_Id = Players.Player_Id
+INNER JOIN Pitcher_Stats 
+ON Pitcher_Stats.Player_Id = Players.Player_Id
+
+
+/*Creates Trigger that notifies when a team gets a win */
+Go
+CREATE TRIGGER notifywin
+ON Teams
+AFTER UPDATE
+AS
+   IF (SELECT Win FROM inserted) = (SELECT Win FROM deleted) + 1
+   BEGIN
+      DECLARE @Team_Name VARCHAR(50)
+      SELECT @Team_Name = Team_name FROM Teams WHERE Team_Id = (SELECT Team_Id FROM inserted)
+      PRINT @Team_Name + ' won a game'
+   END
+GO
 
 
 
+UPDATE Teams
+SET Win = 10
+WHERE Team_Id = 1;
+
+/*create index and use index in select statement */
+CREATE INDEX index1
+ON teams (team_name);
+
+SELECT *
+FROM teams WITH(INDEX(index1))
+
+
+/*Make a view to show top 5 homerun hitters*/
+GO
+CREATE VIEW Homerun_Leaders AS
+SELECT TOP 5 Players.Player_Id, Players.Player_Name, Hitter_Stats.Num_Of_Homeruns
+FROM Players
+INNER JOIN Hitter_Stats
+ON Hitter_Stats.Player_Id = Players.Player_Id
+ORDER BY Num_Of_Homeruns DESC
+GO
+
+SELECT *
+FROM Homerun_Leaders
+
+/*Select Statement to display Collation*/
 SELECT DATABASEPROPERTYEX('BaseballStats', 'Collation') SQLCollation;
